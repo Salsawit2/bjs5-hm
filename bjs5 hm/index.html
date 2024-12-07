@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>JSON+promises+async+callback in html</h2>
+    <P id="D"></P>
+    <P id="k"></P>
+    <P id="N"></P>
+    <script>
+        var myObj={ name: "riya", age: 15, grade: 7 };
+        var myJSON = JSON.stringify(myObj); //convert object to JSON for sending data
+        var newObj= JSON.parse(myJSON); //converts json into object 
+        document.getElementById("D").innerHTML= newObj.grade;
+    </script>
+    <script>
+        async function add(a,b) {
+        let response= await a+b;
+        display(response);   
+        }
+        function display(some) {
+            document.getElementById("K").innerHTML= some;
+        }
+        add(55,10)
+    </script>
+    <script>
+        function myDisplayer(some) {
+            document.getElementById("N").innerHTML=some;
+
+        }
+        function sum(a,b){
+            var sum= a+b ;
+         myDisplayer(sum);
+        }
+        let myPromise = new Promise(function(myResolve,myReject) {
+            //produncing code may take some time
+            let x=0; //some code (try to change x to 5)
+            if(x==0) {
+                myResolve ("ok"); //when successful
+
+            } else{
+                myReject("error"); //when error
+            
+            }
+        });
+        //consuming code=must wait for fillfilled promise 
+        myPromise.then(
+            function(value) {sum(10,20);}, //code is successful
+            function(error) {sum(error);} //code is error
+        );
+    </script>
+    </script>
+</body>
+</html>
